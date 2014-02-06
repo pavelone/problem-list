@@ -1,0 +1,8 @@
+<% content_for :list do %>List<% end %>
+<h3>List</h3>
+<div class="form">
+<%= simple_form_for @list do |form| %>
+<%= form.input :search_string, autofocus: true %>
+<%= form.button :submit, 'Search', class: 'submit' %>
+<% end %>
+</div>
