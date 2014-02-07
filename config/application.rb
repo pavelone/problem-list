@@ -1,6 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'dotenv'; Dotenv.load "problem-list.env"
+#require 'dotenv'; Dotenv.load "problem-list.env"
 require 'rails/all'
 
 require 'socket'
