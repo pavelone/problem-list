@@ -4,8 +4,11 @@ User friendly diagnosis search in Snomed (http://en.wikipedia.org/wiki/SNOMED_CT
 with using of IMO (https://www.e-imo.com/) service
 
 To use the application you have to set up the following environment variables:
-*IMO_HOST=
-*IMO_PORT=
-*ORG_ID=
+
+IMO_HOST=
+
+IMO_PORT=
+
+ORG_ID=
 
 The app can be found here: http://problem-list.herokuapp.com/
