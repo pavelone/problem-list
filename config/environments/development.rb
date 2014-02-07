@@ -1,3 +1,5 @@
+require 'dotenv'; Dotenv.load "problem-list.env"
+
 ProblemList::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
