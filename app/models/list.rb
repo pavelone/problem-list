@@ -3,6 +3,7 @@ class List < ActiveRecord::Base
   
   column :search_string, :string
   column :xmldoc, :Document
+  column :successful, :Boolean
 
   def search_problem()
     
@@ -46,9 +47,13 @@ class List < ActiveRecord::Base
       flags = aflag
     end    
 
-    serv = TCPSocket.open(imo_host , imo_port)
+    self.successful = false
 
-    local, peer = serv.addr, serv.peeraddr
+    begin
+
+      serv = TCPSocket.open(imo_host , imo_port)
+
+      local, peer = serv.addr, serv.peeraddr
 
       
       #to_send = "search^"+num_of_results.to_s+"|"+num_of_dym.to_s+"|"+xml_or_json.to_s+"|1^"+search+"^"+org_id+"^"+flags #with flags
@@ -57,7 +62,7 @@ class List < ActiveRecord::Base
       serv.puts(to_send)
       serv.flush
 
-      sleep(0.5) # TODO: find out how to handle without delays
+      sleep(1) # TODO: find out how to handle without delays
       
       response_size_bytes = ""
       response_size_bytes = serv.read_nonblock(4)
@@ -69,7 +74,13 @@ class List < ActiveRecord::Base
       sleep(0.5)
       response_xml += serv.read_nonblock(response_size)
       
+      self.successful = true
+      
       self.xmldoc = Document.new(response_xml)
+      
+    rescue
+    
+    end
 
   end
   
