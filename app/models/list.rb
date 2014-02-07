@@ -2,10 +2,9 @@ class List < ActiveRecord::Base
   has_no_table
   
   column :search_string, :string
-  column :xmldoc, :string
+  column :xmldoc, :Document
 
   def search_problem()
-    Rails.logger.info(self.search_string)
     
     num_of_results = 20
     num_of_dym = 5
@@ -55,8 +54,6 @@ class List < ActiveRecord::Base
       #to_send = "search^"+num_of_results.to_s+"|"+num_of_dym.to_s+"|"+xml_or_json.to_s+"|1^"+search+"^"+org_id+"^"+flags #with flags
       to_send = "search^"+num_of_results.to_s+"|"+num_of_dym.to_s+"|"+xml_or_json.to_s+"|1^"+self.search_string+"^"+ org_id # 1 is the page 
 
-      Rails.logger.info(to_send)
-
       serv.puts(to_send)
       serv.flush
 
@@ -73,7 +70,6 @@ class List < ActiveRecord::Base
       response_xml += serv.read_nonblock(response_size)
       
       self.xmldoc = Document.new(response_xml)
-      Rails.logger.info(self.xmldoc)
 
   end
   

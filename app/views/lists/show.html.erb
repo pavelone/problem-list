@@ -1,4 +1,9 @@
 <h2>searched<h2>
 
-<%=@list.xmldoc%>
+<% @list.xmldoc.elements.each("items/item") do |e| %>
+  <%= e.attributes["SNOMED_DESCRIPTION"] %>
+  <%= e.attributes["SCT_CONCEPT_ID"] %>
+  <%= e.attributes["SNOMED_US_DESCRIPTION"] %> 
+  <P>
+<% end %>
 
