@@ -1,9 +1,15 @@
-<h2>searched<h2>
+
+<div class="row">
+  <div class="span6">Snomed description</div>
+  <div class="span2">Snomed code</div>
+  <div class="span4">Snomed US Description</div>
+</div>
 
 <% @list.xmldoc.elements.each("items/item") do |e| %>
-  <%= e.attributes["SNOMED_DESCRIPTION"] %>
-  <%= e.attributes["SCT_CONCEPT_ID"] %>
-  <%= e.attributes["SNOMED_US_DESCRIPTION"] %> 
-  <P>
+<div class="row">
+  <div class="span6"><%= e.attributes["SNOMED_DESCRIPTION"] %></div>
+  <div class="span2"><%= e.attributes["SCT_CONCEPT_ID"] %></div>
+  <div class="span4"><%= e.attributes["SNOMED_US_DESCRIPTION"] %></div>
+</div>
 <% end %>
 
